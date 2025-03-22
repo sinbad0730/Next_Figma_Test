@@ -33,24 +33,24 @@ export default function PricingDashboard() {
   const [timeframe, setTimeframe] = useState("6 meses")
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 flex justify-between items-center px-6 py-4 bg-white border-b shadow-sm backdrop-blur-sm bg-white/80">
-        <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-br from-indigo-600 to-purple-700 bg-clip-text text-transparent text-3xl font-bold">
+      <header className="flex justify-between items-center px-4 py-3 bg-white border-b">
+        <div className="flex items-center h-full">
+          <div className="bg-gradient-to-br from-[#B4C0C8] to-[#233645] bg-clip-text text-transparent text-3xl font-bold text-gray-600">
             RAISE
           </div>
-          <div className="flex flex-col">
-            <p className="text-sm text-slate-600">by</p>
-            <p className="text-lg font-semibold text-indigo-600">Matrix Consulting</p>
+          <div className="text-sm text-rose-600 ml-1">
+            <p className="text-sm text-black">by</p>
+            <p className="text-lg text-red">Matrix Consulting</p>
           </div>
         </div>
-        <div className="flex items-center space-x-6">
-          <button className="p-2.5 text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+        <div className="flex items-center gap-4">
+          <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-full">
             <Bell size={20} />
           </button>
-          <div className="flex items-center space-x-3 group">
-            <div className="h-10 w-10 rounded-full ring-2 ring-slate-100 overflow-hidden">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-full bg-gray-200 overflow-hidden">
               <Image
                 src="/carlos.png?height=32&width=32"
                 width={32}
@@ -59,148 +59,191 @@ export default function PricingDashboard() {
                 className="object-cover"
               />
             </div>
-            <div>
-              <div className="font-medium text-slate-700">Carlos Villalba</div>
-              <div className="text-sm font-semibold text-slate-900">Pricing</div>
+            <div className="text-sm">
+              <div className="font-medium text-[#415564]">Carlos Villalba</div>
+              <div className="text-md font-bold text-black">Pricing</div>
             </div>
-            <ChevronDown size={16} className="text-slate-400 group-hover:text-slate-600" />
+            <ChevronDown size={16} className="text-gray-500" />
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">¡Hola Carlos!</h1>
-          <p className="text-xl text-slate-600">Mantén bajo control el precio y las promociones de tus productos</p>
+      <main className="w-full mx-auto px-4 py-6">
+        {/* Welcome Section */}
+        <div className="mb-6">
+          <h1 className="text-4xl font-bold text-gray-800">¡Hola Carlos!</h1>
+          <p className="text-2xl text-gray-600">Mantén bajo control el precio y las promociones de tus productos</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-9 gap-6 mb-8">
-          <div className="md:col-span-2 bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
-            <h2 className="text-xl font-semibold text-slate-800 mb-4">Gestionar precios</h2>
-            <div className="flex flex-col space-y-3">
-              <button className="px-4 py-2.5 border border-slate-200 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-9 gap-4 mb-6">
+          {/* Manage Prices Card */}
+          <div className="col-span-2 bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Gestionar precios</h2>
+            <div className="flex gap-2 text-black">
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-md hover:bg-gray-50 transition-colors">
                 Lista
               </button>
-              <button className="px-4 py-2.5 border border-slate-200 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors">
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-md hover:bg-gray-50 transition-colors">
                 Promoción
               </button>
             </div>
           </div>
 
-          <div className="md:col-span-7 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-semibold text-slate-800">Promedio de ventas</h2>
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-indigo-600"></div>
-                    <span className="text-sm text-slate-600">Brutos</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                    <span className="text-sm text-slate-600">Netos</span>
-                  </div>
-                  <button className="flex items-center space-x-1 text-sm text-slate-600 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50">
-                    {timeframe}
-                    <ChevronDown size={14} />
-                  </button>
-                </div>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={salesData}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis 
-                      dataKey="name" 
-                      axisLine={false} 
-                      tickLine={false}
-                      tick={{fontSize: 12, fill: '#666'}}
-                      textAnchor="middle"
-                      interval={0}
-                      height={30}
-                    />
-                    <YAxis
-                      axisLine={false}
-                      tickLine={false} 
-                      ticks={[10, 50, 100]}
-                      domain={[0, 100]}
-                      tickFormatter={(value) => (value === 10 ? "10M" : value === 50 ? "50M" : value === 100 ? "100M" : "")}
-                      tick={{fontSize: 12, fill: '#666'}}
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="bruto"
-                      stroke="#881337"
-                      strokeWidth={2.5}
-                      dot={false}
-                      activeDot={{ r: 6, fill: '#881337' }}
-                    />
-                    <Line
-                      type="monotone" 
-                      dataKey="netos"
-                      stroke="#e11d48"
-                      strokeWidth={2.5}
-                      dot={false}
-                      activeDot={{ r: 6, fill: '#e11d48' }}
-                    />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: '#fff',
-                        border: '1px solid #ccc',
-                        borderRadius: '4px'
-                      }}
-                      labelStyle={{fontSize: 12}}
-                      itemStyle={{fontSize: 12}}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
+          {/* Search by Market Card */}
+          <div className="col-span-4 bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Consultar por market</h2>
+            <div className="flex flex-wrap gap-2 text-black">
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm hover:bg-gray-50 transition-colors">
+                Jumbo
+              </button>
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm hover:bg-gray-50 transition-colors">
+                Unimark
+              </button>
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm hover:bg-gray-50 transition-colors">
+                Walmart
+              </button>
+              <button className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm hover:bg-gray-50 transition-colors">
+                TOTTUS
+              </button>
             </div>
+          </div>
 
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <h2 className="text-xl font-semibold text-slate-800 mb-6">Márgen total de ganancias</h2>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={marginData}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                    <YAxis axisLine={false} tickLine={false} ticks={[0, 100, 200, 300]} domain={[0, 300]} />
-                    <Bar dataKey="value" fill="#e11d48" radius={[20, 20, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+          {/* Search by Product Card */}
+          <div className="col-span-3 bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Consultar por producto</h2>
+            <div className="flex gap-2 text-black">
+              <input
+                type="text"
+                placeholder="Buscar por SKU_ID"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-gray-400 text-black"
+              />
+              <button className="px-4 py-2 border border-gray-300 rounded-full text-sm hover:bg-gray-50 transition-colors text-black">
+                Buscar
+              </button>
             </div>
           </div>
         </div>
 
-        <div>
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-slate-800">Key Value Items</h2>
-            <button className="px-5 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors">
+        {/* Charts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-15 gap-4 mb-6">
+          {/* Sales Average Chart */}
+          <div className="col-span-9 bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-semibold text-gray-800">Promedio de ventas</h2>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
+                  <div className="w-3 h-3 rounded-full bg-rose-800"></div>
+                  <span className="text-xs text-gray-600">Brutos</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-3 h-3 rounded-full bg-rose-500"></div>
+                  <span className="text-xs text-gray-600">Netos</span>
+                </div>
+                <button className="flex items-center gap-1 text-xs text-gray-600 border border-gray-300 rounded px-2 py-1">
+                  {timeframe}
+                  <ChevronDown size={14} />
+                </button>
+              </div>
+            </div>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={salesData}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={false} 
+                    tickLine={false}
+                    tick={{fontSize: 12, fill: '#666'}}
+                    textAnchor="middle"
+                    interval={0}
+                    height={30}
+                  />
+                  <YAxis
+                    axisLine={false}
+                    tickLine={false} 
+                    ticks={[10, 50, 100]}
+                    domain={[0, 100]}
+                    tickFormatter={(value) => (value === 10 ? "10M" : value === 50 ? "50M" : value === 100 ? "100M" : "")}
+                    tick={{fontSize: 12, fill: '#666'}}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="bruto"
+                    stroke="#881337"
+                    strokeWidth={2.5}
+                    dot={false}
+                    activeDot={{ r: 6, fill: '#881337' }}
+                  />
+                  <Line
+                    type="monotone" 
+                    dataKey="netos"
+                    stroke="#e11d48"
+                    strokeWidth={2.5}
+                    dot={false}
+                    activeDot={{ r: 6, fill: '#e11d48' }}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#fff',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px'
+                    }}
+                    labelStyle={{fontSize: 12}}
+                    itemStyle={{fontSize: 12}}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Profit Margin Chart */}
+          <div className="col-span-6 bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+            <h2 className="text-lg font-semibold text-gray-800 mb-4">Márgen total de ganancias</h2>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={marginData}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                  <YAxis axisLine={false} tickLine={false} ticks={[0, 100, 200, 300]} domain={[0, 300]} />
+                  <Bar dataKey="value" fill="#e11d48" radius={[20, 20, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+
+        {/* Key Value Items Section */}
+        <div className="mb-4">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-semibold text-gray-800">Key Value Items</h2>
+            <button className="px-4 py-2 bg-rose-700 text-white rounded-[90px] w-30 text-sm hover:bg-rose-800 transition-colors">
               Ver Todos
             </button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
-            {Array(7).fill(0).map((_, index) => (
-              <div key={index} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                <div className="flex justify-center mb-3">
-                  <div className="w-20 h-36 relative">
-                    <Image
-                      src="/placeholder.svg?height=128&width=64"
-                      width={64}
-                      height={128}
-                      alt="Wine bottle"
-                      className="object-contain"
-                    />
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {Array(7)
+              .fill(0)
+              .map((_, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                  <div className="flex justify-center mb-2">
+                    <div className="w-full h-full relative">
+                      <Image
+                        src="/bottle.png?height=128&width=64"
+                        width={64}
+                        height={128}
+                        alt="Wine bottle"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  </div>
+                  <div className="text-center text-black text-md font-bold">
+                    <div className="font-medium">Dolores Reserva</div>
+                    <div className="text-gray-600">Especial 70D082</div>
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="font-medium text-slate-800">Dolores Reserva</div>
-                  <div className="text-sm text-slate-500">Especial 70D082</div>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </main>
